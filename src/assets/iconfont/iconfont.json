@@ -1,0 +1,58 @@
+{
+  "id": "4774866",
+  "name": "后台管理系统模板",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1727599",
+      "name": "410指南、指导",
+      "font_class": "zhinanzhidao",
+      "unicode": "e905",
+      "unicode_decimal": 59653
+    },
+    {
+      "icon_id": "39250091",
+      "name": "robot-2-fill",
+      "font_class": "robot-2-fill",
+      "unicode": "ece8",
+      "unicode_decimal": 60648
+    },
+    {
+      "icon_id": "11808033",
+      "name": "权限",
+      "font_class": "quanxian",
+      "unicode": "e69c",
+      "unicode_decimal": 59036
+    },
+    {
+      "icon_id": "12594595",
+      "name": "角色管理",
+      "font_class": "jiaoseguanli",
+      "unicode": "e72c",
+      "unicode_decimal": 59180
+    },
+    {
+      "icon_id": "2480667",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "15633946",
+      "name": "用户管理",
+      "font_class": "yonghuguanli",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "40820143",
+      "name": "库存管理",
+      "font_class": "kucunguanli",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    }
+  ]
+}

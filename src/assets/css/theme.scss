@@ -1,0 +1,36 @@
+@mixin common {
+    --color-primary-rgb: 186, 147, 255;
+    --color-primary: rgb(var(--color-primary-rgb));
+
+    font-family: "AlimamaDaoLiTi";
+
+    //element ui 样式变量
+    --el-color-primary: var(--color-primary) !important;
+    --el-menu-item-height: 40px !important;
+    --el-menu-sub-item-height: var(--el-menu-item-height) !important;
+}
+:root {
+    @include common;
+
+    --box-bg-color: #fff;
+    --box-shadow: 0 0 8px #eee;
+    --hover-bg-color: rgba(46, 51, 56, 0.09);
+    background-color: rgb(247, 250, 252);
+    color: #333;
+    .el-button--primary {
+        &:hover {
+            border-color: rgba(var(--color-primary-rgb), 0.8);
+            background-color: rgba(var(--color-primary-rgb), 0.8);
+        }
+    }
+}
+
+html.dark {
+    @include common;
+
+    --box-bg-color: rgb(28, 28, 28);
+    --box-shadow: none;
+    --hover-bg-color: rgba(255, 255, 255, 0.12);
+    background-color: rgb(18, 18, 18);
+    color: #e0e0e0;
+}
