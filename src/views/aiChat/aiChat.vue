@@ -17,7 +17,8 @@
                     </div>
                 </div>
             </div>
-            <el-input v-model="msgContent" style="width: 100%" :rows="4" type="textarea" placeholder="请输入问题" />
+            <el-input v-model="msgContent" style="width: 100%" :rows="4" type="textarea" placeholder="请输入问题"
+                @keydown.enter.exact.prevent="sendMessage" />
             <div style="display: flex;justify-content: flex-end;">
                 <el-button type="primary" @click="sendMessage">发送</el-button>
             </div>
