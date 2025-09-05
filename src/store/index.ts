@@ -17,18 +17,55 @@ const useStore = defineStore("main", {
         /**
          * 切换主题 明亮/黑暗
          */
-        changeTheme(isDark?: boolean) {
+        changeTheme(isDark?: boolean, isAnimation?: boolean) {
             if (typeof isDark === 'boolean') {
                 this.setStorageState("isDarkTheme", isDark)
             } else {
                 this.setStorageState("isDarkTheme", !this.isDarkTheme)
             }
-            if (this.isDarkTheme) {
-                document.documentElement.classList.add("dark")
-            } else {
-                document.documentElement.classList.remove("dark")
+            const fn = () => {
+                // 动画过渡切换主题色
+                if (this.isDarkTheme) {
+                    document.documentElement.classList.add("dark")
+                } else {
+                    document.documentElement.classList.remove("dark")
+                }
+                $bus.emit("themeChange", this.isDarkTheme)
             }
-            $bus.emit("themeChange", this.isDarkTheme)
+            if (isAnimation) {
+                // 执行切换主题的操作
+                const transition = document.startViewTransition(() => {
+                    fn()
+                });
+
+                transition.ready.then(() => {
+                    // 获取鼠标的坐标
+                    const { clientX, clientY } = { clientX: 0, clientY: 0 };
+
+                    // 计算最大半径
+                    const radius = Math.hypot(
+                        Math.max(clientX, innerWidth - clientX),
+                        Math.max(clientY, innerHeight - clientY)
+                    );
+
+                    // 圆形动画扩散开始
+                    document.documentElement.animate(
+                        {
+                            clipPath: [
+                                `circle(0% at ${clientX}px ${clientY}px)`,
+                                `circle(${radius}px at ${clientX}px ${clientY}px)`,
+                            ],
+                        },
+                        // 设置时间，已经目标伪元素
+                        {
+                            duration: 500,
+                            pseudoElement: "::view-transition-new(root)",
+                        }
+                    );
+                });
+            } else {
+                fn()
+            }
         },
         /**
          * 修改主题色

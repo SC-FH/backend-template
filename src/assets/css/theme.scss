@@ -9,6 +9,7 @@
     --el-menu-item-height: 40px !important;
     --el-menu-sub-item-height: var(--el-menu-item-height) !important;
 }
+
 :root {
     @include common;
 
@@ -17,6 +18,7 @@
     --hover-bg-color: rgba(46, 51, 56, 0.09);
     background-color: rgb(247, 250, 252);
     color: #333;
+
     .el-button--primary {
         &:hover {
             border-color: rgba(var(--color-primary-rgb), 0.8);
@@ -33,4 +35,10 @@ html.dark {
     --hover-bg-color: rgba(255, 255, 255, 0.12);
     background-color: rgb(18, 18, 18);
     color: #e0e0e0;
+}
+
+::view-transition-new(root),
+::view-transition-old(root) {
+    /* 关闭默认动画 */
+    animation: none;
 }
