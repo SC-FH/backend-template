@@ -27,7 +27,7 @@
                 </div>
             </el-tooltip>
             <el-tooltip effect="dark" :content="!store.isDarkTheme ? '明亮' : '黑暗'" placement="bottom">
-                <div class="icon" @click="store.changeTheme(!store.isDarkTheme, true)">
+                <div class="icon" @click="store.changeTheme(!store.isDarkTheme, { show: true, pointe: $event })">
                     <el-icon size="18">
                         <Sunny v-if="store.isDarkTheme" />
                         <Moon v-else />
