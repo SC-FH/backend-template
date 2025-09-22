@@ -17,7 +17,7 @@ const useStore = defineStore("main", {
         /**
          * 切换主题 明亮/黑暗
          */
-        changeTheme(isDark?: boolean, isAnimation?: boolean) {
+        changeTheme(isDark?: boolean, animationOption?: { show: boolean, pointe: { clientX: number, clientY: number } }) {
             if (typeof isDark === 'boolean') {
                 this.setStorageState("isDarkTheme", isDark)
             } else {
@@ -32,7 +32,7 @@ const useStore = defineStore("main", {
                 }
                 $bus.emit("themeChange", this.isDarkTheme)
             }
-            if (isAnimation) {
+            if (animationOption?.show && document.startViewTransition) {
                 // 执行切换主题的操作
                 const transition = document.startViewTransition(() => {
                     fn()
@@ -40,7 +40,7 @@ const useStore = defineStore("main", {
 
                 transition.ready.then(() => {
                     // 获取鼠标的坐标
-                    const { clientX, clientY } = { clientX: 0, clientY: 0 };
+                    const { clientX, clientY } = animationOption.pointe;
 
                     // 计算最大半径
                     const radius = Math.hypot(
@@ -48,18 +48,20 @@ const useStore = defineStore("main", {
                         Math.max(clientY, innerHeight - clientY)
                     );
 
+                    const clipPath = [
+                        `circle(0% at ${clientX}px ${clientY}px)`,
+                        `circle(${radius}px at ${clientX}px ${clientY}px)`,
+                    ]
                     // 圆形动画扩散开始
                     document.documentElement.animate(
                         {
-                            clipPath: [
-                                `circle(0% at ${clientX}px ${clientY}px)`,
-                                `circle(${radius}px at ${clientX}px ${clientY}px)`,
-                            ],
+                            clipPath: this.isDarkTheme ? clipPath : [...clipPath].reverse(),
                         },
                         // 设置时间，已经目标伪元素
                         {
-                            duration: 500,
-                            pseudoElement: "::view-transition-new(root)",
+                            duration: 300,
+                            fill: "both",
+                            pseudoElement: this.isDarkTheme ? "::view-transition-new(root)" : "::view-transition-old(root)",
                         }
                     );
                 });

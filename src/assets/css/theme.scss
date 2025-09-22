@@ -42,3 +42,11 @@ html.dark {
     /* 关闭默认动画 */
     animation: none;
 }
+
+.dark::view-transition-old(root) {
+    z-index: 0;
+}
+
+::view-transition-old(root) {
+    z-index: 9999;
+}
