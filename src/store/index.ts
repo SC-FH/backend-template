@@ -55,11 +55,12 @@ const useStore = defineStore("main", {
                     // 圆形动画扩散开始
                     document.documentElement.animate(
                         {
-                            clipPath: this.isDarkTheme ? clipPath : clipPath.reverse(),
+                            clipPath: this.isDarkTheme ? clipPath : [...clipPath].reverse(),
                         },
                         // 设置时间，已经目标伪元素
                         {
                             duration: 300,
+                            fill: "both",
                             pseudoElement: this.isDarkTheme ? "::view-transition-new(root)" : "::view-transition-old(root)",
                         }
                     );
