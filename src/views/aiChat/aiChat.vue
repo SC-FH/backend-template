@@ -13,8 +13,8 @@
             <div class="messageBox" ref="messageBoxRef">
                 <div :class="{ itemBox: true, itemBox_reversal: item.role == 'user' }"
                     v-for="(item, index) in currentRoom.messages" :key="index">
-                    <div v-if="item.content" class="content" v-html="marked.parse(item.content)"></div>
-                    <div v-else-if="!item.content && isAnswer" class="loaderBox">
+                    <div v-if="item.content.trim()" class="content" v-html="marked.parse(item.content)"></div>
+                    <div v-else-if="!item.content.trim() && isAnswer" class="loaderBox">
                         <div class="loader"></div>
                     </div>
                 </div>
