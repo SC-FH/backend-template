@@ -1,8 +1,10 @@
 <template>
     <div class="aiChat">
-        <div class="roomBox">
-            <div :class="{ room: true, room_active: item == currentRoom }" v-for="(item, index) in roomList"
-                :key="index" @click="changeRoom(item)">新的聊天
+        <div class="chatListBox">
+            <div class="chatList">
+                <div :class="{ item: true, item_active: item == currentRoom }" v-for="(item, index) in roomList"
+                    :key="index" @click="changeRoom(item)">新的聊天
+                </div>
             </div>
             <el-button @click="addRoom">+创建新对话</el-button>
         </div>
@@ -112,29 +114,39 @@ function addRoom() {
     overflow: hidden;
 
 
-    .roomBox {
+    .chatListBox {
         width: 200px;
         display: flex;
         flex-direction: column;
         gap: 10px;
 
-        .room {
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
+        .chatList {
+            // flex: 1;
+            max-height: calc(100% - 32px - 20px);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow: auto;
 
-            &:hover {
-                background-color: var(--hover-bg-color);
+            .item {
+                padding: 10px;
+                border-radius: 4px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--hover-bg-color);
+                }
             }
-        }
 
-        .room_active {
-            background-color: var(--color-primary);
-
-            &:hover {
+            .item_active {
                 background-color: var(--color-primary);
+
+                &:hover {
+                    background-color: var(--color-primary);
+                }
             }
         }
+
     }
 
     .line {

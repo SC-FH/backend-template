@@ -4,6 +4,8 @@
             <div class="title">项目地址：</div>
             <a href="https://gitee.com/vanish_FH/backend-template"
                 target="_blank">https://gitee.com/vanish_FH/backend-template</a>
+            <a href="https://github.com/SC-FH/backend-template"
+                target="_blank">https://github.com/SC-FH/backend-template</a>
         </div>
         <div class="card">
             <div class="title">技术栈：</div>
